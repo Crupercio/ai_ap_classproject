@@ -40,11 +40,11 @@ Write one prompt for the task and use it, unchanged, for both models on every ti
 ```
 You are a support ticket classifier. Read the ticket below and respond with a JSON object that has exactly these three keys:
 
-\\- "category": one of billing, technical, account\\\_access, feature\\\_request, other
+- "category": one of billing, technical, account_access, feature_request, other
 
-\\- "urgency": one of low, medium, high
+- "urgency": one of low, medium, high
 
-\\- "needs\\\_human": true if the ticket needs a human agent instead of an automated reply, otherwise false
+- "needs_human": true if the ticket needs a human agent instead of an automated reply, otherwise false
 
 
 
@@ -52,7 +52,7 @@ Return only the JSON. No other text.
 
 
 
-Ticket: \\\[paste ticket here]
+Ticket: [paste ticket here]
 
 ```
 
