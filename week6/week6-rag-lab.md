@@ -1,20 +1,8 @@
 # Week 6 Assignment — RAG Codelab + Your Own Documents
 
-**Chapter:** Huyen, *AI Engineering*, Ch. 6 — RAG (pg. 253–274)
-**External lesson:** Google \& Kaggle *5-Day Gen AI Intensive*, Day 2: Embeddings and Vector Stores — https://www.kaggle.com/learn-guide/5-day-genai
-**Points:** 100
-**Due:** End of Week 6
-
-\---
-
-## Submission Instructions
-
-1. Copy this file into your Assignment 1 repo, keeping the filename **`week6-rag-lab.md`**.
-2. Fill in every blank (`\_\_\_\_\_`) and bracketed placeholder directly in the file.
-3. Make sure your Kaggle notebook is saved with its outputs showing, and that it's either public or shared with me.
-4. Push your commit, then submit a link to the file as instructed for this course.
 
 **Name:** Luis Cruz Sanchez
+
 **Link to your completed Kaggle notebook:** https://www.kaggle.com/code/luiscruzsanchez/day-2-document-q-a-with-rag-b809ac
 
 \---
@@ -103,72 +91,21 @@ Answer all four:
 
 **Your reflection:**
 
-**The codelab uses an embedding-based retriever, which is one of the two families Huyen describes. Gemini turns the question and each document into vectors, and Chroma returns the closest one. My keyword questions worked, but a term-based retriever would probably have handled them too, since words like "max ki" and "chapters" appear in the documents. It would likely do worse on question 3, where I said "shows" and "comic" but the document says "anime" and "manga." The embedding retriever still found it. It missed on question 4, though. It returned the origins document, maybe because "modeled" also appears there. A term-based retriever might have made the same mistake.**
+The codelab uses an embedding-based retriever, which is one of the two families Huyen describes. Gemini turns the question and each document into vectors, and Chroma returns the closest one. My keyword questions worked, but a term-based retriever would probably have handled them too, since words like "max ki" and "chapters" appear in the documents. It would likely do worse on question 3, where I said "shows" and "comic" but the document says "anime" and "manga." The embedding retriever still found it. It missed on question 4, though. It returned the origins document, maybe because "modeled" also appears there. A term-based retriever might have made the same mistake.
 
 
 
-**The pipeline handled the unanswerable question well. Gemini said the text did not give Gohan's exact ki, then listed Piccolo's, Vegeta's, and Goku's ki, which were all in the passage. But the prompt only says the model may ignore the passage, so it can use its own knowledge. Question 4 showed this, because Gemini added a quote that is not in any of my documents. In a real app, a confident made-up answer could mislead people. I would change the prompt to say answer only from the passages and say "I don't know" otherwise.**
+The pipeline handled the unanswerable question well. Gemini said the text did not give Gohan's exact ki, then listed Piccolo's, Vegeta's, and Goku's ki, which were all in the passage. But the prompt only says the model may ignore the passage, so it can use its own knowledge. Question 4 showed this, because Gemini added a quote that is not in any of my documents. In a real app, a confident made-up answer could mislead people. I would change the prompt to say answer only from the passages and say "I don't know" otherwise.
 
 
 
-**Switching to my documents made retrieval harder. The car documents were very different from each other, but mine share words like "Toriyama" and "manga," and only one passage was retrieved. The notebook's two models were also retired, so I had to swap them, and Gemini sometimes gave different wording on different runs.**
+Switching to my documents made retrieval harder. The car documents were very different from each other, but mine share words like "Toriyama" and "manga," and only one passage was retrieved. The notebook's two models were also retired, so I had to swap them, and Gemini sometimes gave different wording on different runs.
 
 
 
-**My project does not need RAG. It is a voice message generator that takes a short audio sample and a typed message and creates new speech in that voice. That is closer to prompting a pretrained voice model than to retrieval, because the reference clip works like the prompt. The app is not looking anything up, and the user writes the whole message, so there are no documents to retrieve from.**
-
-\---
+My project does not need RAG. It is a voice message generator that takes a short audio sample and a typed message and creates new speech in that voice. That is closer to prompting a pretrained voice model than to retrieval, because the reference clip works like the prompt. The app is not looking anything up, and the user writes the whole message, so there are no documents to retrieve from.
 
 \---
 
-## Part 4: Graduate Extension — Term-Based Retrieval Comparison (20 pts)
-
-*Graduate students required.*
-
-In the same notebook, add a **BM25 retriever** (for example, with the `rank\_bm25` library) over the same documents. Run your 4 answerable questions through it and compare which passages it retrieves against the codelab's embedding retriever.
-
-|#|Question (short)|Embedding retriever found it?|BM25 found it?|
-|-|-|-|-|
-|1|\_\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
-|2|\_\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
-|3|\_\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
-|4|\_\_\_\_\_|\_\_\_\_\_|\_\_\_\_\_|
-
-In 200–300 words: where did the two retrievers agree and disagree, and does the pattern match what Huyen predicts for keyword versus paraphrase queries? If you were building this for real, would you use one, the other, or both?
-
-**Your analysis:** \_\_\_\_\_
-
 \---
-
-## Optional (Not Graded)
-
-If you want to go further, the rest of Day 2 is worth your time: the **Embeddings and Vector Stores whitepaper**, the summary podcast, the other two codelabs (text similarity and embedding-based classification), and the recorded livestream with Google engineers.
-
-\---
-
-## Grading
-
-|Component|Undergraduate|Graduate|
-|-|-|-|
-|Complete the RAG codelab (Part 1)|30 pts|20 pts|
-|Make it yours (Part 2)|40 pts|40 pts|
-|Reflection (Part 3)|30 pts|20 pts|
-|Graduate extension (Part 4)|—|20 pts|
-|**Total**|**100 pts**|**100 pts**|
-
-### Rubric
-
-|Level|Criteria|
-|-|-|
-|**Full credit**|The codelab runs completely with outputs showing, and the pipeline summary is accurate. The notebook uses the student's own documents. All 5 questions are present with the required mix of types, and the retrieval-vs-generation diagnosis is supported by evidence from the notebook. Reflection connects the student's own results to Huyen Ch. 6.|
-|**Partial credit**|The codelab is incomplete or outputs are missing. Sample documents were not replaced, or fewer than 5 questions are included, or the required question types are missing. The diagnosis is a guess without evidence. Reflection restates the chapter instead of the results.|
-|**No credit**|Not submitted, the notebook link doesn't work or isn't shared, or results appear fabricated (e.g., table entries that don't match the notebook's outputs).|
-
-\---
-
-## A Note on Scope
-
-Your pipeline won't answer everything correctly on your own documents, and that's expected. What's being graded is whether you can look at a failure and say which part of the pipeline caused it.
-
-Also note: **Quiz 3 is this week too.** Start the codelab early, since setup (accounts, API key, phone verification) can take longer than you'd expect.
 
